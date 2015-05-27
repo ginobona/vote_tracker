@@ -6,6 +6,10 @@ function Kitten(image, wins, losses) {
   this.losses = losses;
 } /* Need to calculate losses so the photo that isn't selected does not appear again */
 
+Kitten.prototype.generateRandom = function() {
+  return kittenPics[Math.floor(Math.random()];
+}
+
 var kittenPics = [];
   kittenPics.push('images/01.jpg'));
   kittenPics.push('images/02.jpg'));
@@ -22,10 +26,6 @@ var kittenPics = [];
   kittenPics.push('images/13.jpg'));
   kittenPics.push('images/14.jpg'));
 
-var showKitten = function () {
-
-}
-
 /* FIRST FUNCTION */
 //Create a function that will randomly select an image between 01.jpg and 14.jpg and place image in section id = FirstPhoto; use a prepend element?//
 
@@ -34,7 +34,6 @@ var showKitten = function () {
 
 /* VOTE */
 /* Create event that highlights photo user voted for (i.e., animation wiggle, glow, etc.)
-
 
 /* PROMPT TO VOTE AGAIN */
 /* Prompt the user to review and vote on two new cat photos */
