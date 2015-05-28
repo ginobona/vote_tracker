@@ -1,43 +1,54 @@
-<script type="text/javascript">
+var idx, idx2;
 
-function Kitten(image, wins, losses) {
+function Kitten(image) {
   this.image = image;
-  this.wins = wins;
-  this.losses = losses;
-} /* Need to calculate losses so the photo that isn't selected does not appear again */
-
-Kitten.prototype.generateRandom = function() {
-  return kittenPics[Math.floor(Math.random()];
+  this.votes = 0;
 }
 
+var images = [];
+  images.push('images/01.jpg');
+  images.push('images/02.jpg');
+  images.push('images/03.jpg');
+  images.push('images/04.jpg');
+  images.push('images/05.jpg');
+  images.push('images/06.jpg');
+  images.push('images/07.jpg');
+  images.push('images/08.jpg');
+  images.push('images/09.jpg');
+  images.push('images/10.jpg');
+  images.push('images/11.jpg');
+  images.push('images/12.jpg');
+  images.push('images/13.jpg');
+  images.push('images/14.jpg');
+
 var kittenPics = [];
-  kittenPics.push('images/01.jpg'));
-  kittenPics.push('images/02.jpg'));
-  kittenPics.push('images/03.jpg'));
-  kittenPics.push('images/04.jpg'));
-  kittenPics.push('images/05.jpg'));
-  kittenPics.push('images/06.jpg'));
-  kittenPics.push('images/07.jpg'));
-  kittenPics.push('images/08.jpg'));
-  kittenPics.push('images/09.jpg'));
-  kittenPics.push('images/10.jpg'));
-  kittenPics.push('images/11.jpg'));
-  kittenPics.push('images/12.jpg'));
-  kittenPics.push('images/13.jpg'));
-  kittenPics.push('images/14.jpg'));
+for (var i = 0; i < images.length; i++) {
+  kittenPics.push(new Kitten(images[i]));
+}
 
-/* FIRST FUNCTION */
-//Create a function that will randomly select an image between 01.jpg and 14.jpg and place image in section id = FirstPhoto; use a prepend element?//
+var showKitten = function () {
+  idx = Math.floor(Math.random() * kittenPics.length);
+  do {
+    idx2 = Math.floor(Math.random() * kittenPics.length);
+    $('#FirstPhoto').attr('src', kittenPics[idx].image);
+    $('#SecondPhoto').attr('src', kittenPics[idx2].image);}
+  while(idx === idx2);
+}
 
-/* SECOND FUNCTION */
-//Create a function that will randomly select an image between 01.jpg and 14.jpg but not the same one as First Function; place image in section id = SecondPhoto; use a prepend element?//
+showKitten();
 
-/* VOTE */
-/* Create event that highlights photo user voted for (i.e., animation wiggle, glow, etc.)
+var $first = $('#FirstPhoto');
+var $second = $('#SecondPhoto');
+$first.on('click', function() {
+  kittenPics[idx].votes +=1;
+  console.log(kittenPics[idx].votes);
+  showKitten();
+})
 
-/* PROMPT TO VOTE AGAIN */
-/* Prompt the user to review and vote on two new cat photos */
-
-/* REPEAT FIRST AND SECOND FUNCTIONS */
+$second.on('click', function() {
+  kittenPics[idx2].votes +=1;
+  console.log(kittenPics[idx2].votes);
+  showKitten();
+})
 
 
